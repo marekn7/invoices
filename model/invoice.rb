@@ -1,12 +1,12 @@
-require "./database"
+require "./db/database"
 
 class Invoice
 
   attr_reader :number, :item, :contact_id, :var_number, :dic_number
 
-  def initialize(number, item, contact_id, var_number, dic_number)
-    @number = number
-    @item = item
+  def initialize(invoice_id, item_id, contact_id, var_number, dic_number)
+    @invoice_id = invoice_id
+    @item_id = item_id
     @contact_id = contact_id
     @var_number = var_number
     @dic_number = dic_number
@@ -15,5 +15,9 @@ class Invoice
   def save
     read_invoices = [Database.sales_invoice, self]
     save_invoices = Database.sales_invoice_save(read_invoices)
+  end
+
+  def read
+
   end
 end
