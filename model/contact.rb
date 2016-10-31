@@ -15,4 +15,8 @@ class Contact
     read_contacts = [Database.contact, self]
     save_contacts = Database.contact_save(read_contacts)
   end
+
+  def self.all
+    read_contacts = [Database.contact_read]
+  end
 end

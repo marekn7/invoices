@@ -14,4 +14,8 @@ class Item
     read_items = [Database.item, self]
     save_items = Database.item_save(read_items)
   end
+
+  def self.all
+    read_items = [Database.item_read]
+  end
 end
