@@ -17,7 +17,7 @@ class Invoice
     save_invoices = Database.sales_invoice_save(read_invoices)
   end
 
-  def read
-
+  def self.all
+    read_invoices = [Database.sales_invoice_read]
   end
 end
