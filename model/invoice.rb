@@ -13,11 +13,11 @@ class Invoice
   end
 
   def save
-    read_invoices = [Database.sales_invoice, self]
+    read_invoices = Database.sales_invoices << self
     save_invoices = Database.sales_invoice_save(read_invoices)
   end
 
   def self.all
-    read_invoices = [Database.sales_invoice_read]
+    read_invoices = Database.sales_invoices
   end
 end

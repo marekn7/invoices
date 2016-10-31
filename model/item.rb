@@ -11,11 +11,11 @@ class Item
   end
 
   def save
-    read_items = [Database.item, self]
+    read_items = Database.items << self
     save_items = Database.item_save(read_items)
   end
 
   def self.all
-    read_items = [Database.item_read]
+    read_items = Database.items
   end
 end
