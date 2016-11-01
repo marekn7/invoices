@@ -24,6 +24,12 @@ class Invoice
     generate_id
   end
 
+  def destroy
+  end
+
+  def self.find
+  end
+
   def save
     read_invoices = Database.sales_invoices << self
     save_invoices = Database.sales_invoice_save(read_invoices)
