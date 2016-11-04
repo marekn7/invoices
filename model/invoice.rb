@@ -12,7 +12,7 @@ class Invoice
     @dic_number = dic_number
   end
 
-  def automatic_generate_id
+  def automatic_generate_id 
     read_invoices = Database.sales_invoices
     read_invoices.map { |id| id.invoice_id}
     generate_id = rand(100)
@@ -24,10 +24,26 @@ class Invoice
     generate_id
   end
 
-  def destroy
+  def ==(obj)
+    require 'pry'; binding.pry
+    if invoice_id == obj.invoice_id
+      true
+    else
+      false
+    end
   end
 
-  def self.find
+  def self.destroy(id)
+    data = Database.sales_invoices
+    data.delete(Invoice.find(id))
+    save_invoices = Database.sales_invoice_save(data)
+  end
+
+  def self.find(id)
+    read_invoices = Database.sales_invoices
+    read_invoices.find do |invoice|
+      invoice.invoice_id == id
+    end
   end
 
   def save
