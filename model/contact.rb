@@ -2,34 +2,46 @@ require "./db/database"
 
 class Contact
 
-  attr_reader :contact_id, :name, :subject, :state
+  attr_reader :name, :phone, :state
+  attr_accessor :contact_id
 
-  def initialize(name, subject, state)
-    @contact_id = automatic_generate_id
+  def initialize(name, phone, state)
     @name = name
-    @subject = subject
+    @phone = phone
     @state = state
   end
 
-  def automatic_generate_id
+  def ==(obj)
+    if contact_id == obj.contact_id
+      true
+    else
+      false
+    end
+  end
+
+  def self.destroy(id)
+    data = Database.contacts
+    data.delete(Contact.find(id))
+    save_contacts = Database.contact_save(data)
+  end
+
+  def self.find(id)
     read_contacts = Database.contacts
-    read_contacts.map { |id| id.contact_id}
+    read_contacts.find do |contact|
+      contact.contact_id == id
+    end
+  end
+
+  def save
+    read_contacts = Database.contacts
+    contact_ids = read_contacts.map { |id| id.contact_id}
     generate_id = rand(100)
-    read_contacts.each do |id|
+    contact_ids.each do |id|
       if generate_id == id
         generate_id = rand(100)
       end
     end
-    generate_id
-  end
-
-  def destroy
-  end
-
-  def self.find
-  end
-
-  def save
+    self.contact_id = generate_id
     read_contacts = Database.contacts << self
     save_contacts = Database.contact_save(read_contacts)
   end
