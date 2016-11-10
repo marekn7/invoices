@@ -1,4 +1,4 @@
-{:invoices_data_index[5o:Invoice
+{:invoices_data_index[6o:Invoice
 :@item_idI"dasdas:ET:@contact_idI"	dasd;T:@var_numberI"
 dadsa;T:@dic_numberI"dasdas;T:@invoice_idI"dad;To;
 ;I"dasdas;T;	I"	dasd;T;
@@ -98,4 +98,5 @@ i;i	;io;
 ;i;	i;
 i;i	;i-o;
 ;i;	i;
-i;i	;iI
+i;i	;iIo:PurchaseInvoice	;i;	i;
+i;iU

@@ -2,15 +2,29 @@ require "pstore"
 
 class Database
 
-  def self.sales_invoices
-    invoices_data = PStore.new("./db/database_invoice")
+  def self.sales_invoice
+    invoices_data = PStore.new("./db/database_sales_invoice")
     invoices_data.transaction(true) do
       invoices_data[:invoices_data_index] || []
     end
   end
 
   def self.sales_invoice_save(invoices)
-    invoices_data = PStore.new("./db/database_invoice")
+    invoices_data = PStore.new("./db/database_sales_invoice")
+    invoices_data.transaction do
+      invoices_data[:invoices_data_index] = invoices
+    end
+  end
+
+  def self.purchase_invoice
+    invoices_data = PStore.new("./db/database_purchase_invoice")
+    invoices_data.transaction(true) do
+      invoices_data[:invoices_data_index] || []
+    end
+  end
+
+  def self.purchase_invoice_save(invoices)
+    invoices_data = PStore.new("./db/database_purchase_invoice")
     invoices_data.transaction do
       invoices_data[:invoices_data_index] = invoices
     end
