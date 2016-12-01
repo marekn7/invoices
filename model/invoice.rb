@@ -32,6 +32,15 @@ class Invoice
     end
   end
 
+  def self.export
+    read_items = Database.items
+    CSV.open("./csv_files/item.csv", "wb") do |csv|
+      read_items.map do |item|
+        csv << [item.item_id, item.name, item.subject]
+      end
+    end
+  end
+
   def save
     read_invoices = self.class.all
     invoice_ids = read_invoices.map { |invoice| invoice.invoice_id}

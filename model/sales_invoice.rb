@@ -1,4 +1,6 @@
+require "csv"
 require "./model/invoice.rb"
+require "./model/purchase_invoice.rb"
 
 class SalesInvoice < Invoice
 

@@ -1,4 +1,8 @@
 require "./db/database"
+require "csv"
+require "./model/purchase_invoice.rb"
+require "./model/sales_invoice.rb"
+require "./model/contact.rb"
 
 class Item
 
@@ -28,6 +32,24 @@ class Item
     read_items = Database.items
     read_items.find do |item|
       item.item_id == id
+    end
+  end
+
+  def self.export
+    read_items = Database.items
+    CSV.open("./csv_files/item_export.csv", "wb") do |csv|
+      read_items.each do |item|
+        csv << [item.item_id, item.name, item.subject]
+      end
+    end
+  end
+
+  def self.import
+    csv_data = CSV.read("./csv_files/item_import.csv")
+    csv_data.each do |item|
+      item_new = Item.new(item[1], item[2])
+      item_new.item_id = item[0]
+      Database.item_save(Database.items << item_new)
     end
   end
 

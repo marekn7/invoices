@@ -3,6 +3,7 @@ require './model/invoice.rb'
 RSpec.describe Invoice do
   describe ' #== ' do
     it 'true if invoices id are the same' do
+      require 'pry', binding.pry
       invoice_1 = Invoice.new(20, 1, 123, 1234)
       invoice_1.invoice_id = 1
       invoice_2 = Invoice.new(20, 1, 123, 1234)
@@ -12,6 +13,7 @@ RSpec.describe Invoice do
     end
 
     it 'false if invoices id are diferent' do
+      require 'pry', binding.pry
       invoice_1 = Invoice.new(20, 1, 123, 1234)
       invoice_1.invoice_id = 5
       invoice_2 = Invoice.new(1, 1, 1, 1)

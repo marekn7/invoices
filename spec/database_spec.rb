@@ -3,6 +3,7 @@ require "./db/database"
 RSpec.describe Database do
   describe 'read and save from database' do
     it '#sales_invoice' do
+      File.open('./db/database', 'w') {|file| file.truncate(0) }
       data = PStore.new("./db/database")
       data.transaction do
         data[:sales_invoice_data_index] = [[1, 'invoice sales', 123]]

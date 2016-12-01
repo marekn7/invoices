@@ -1,4 +1,8 @@
 require "./db/database"
+require "csv"
+require "./model/purchase_invoice.rb"
+require "./model/sales_invoice.rb"
+require "./model/item.rb"
 
 class Contact
 
